@@ -21,7 +21,7 @@ namespace algos.Aws
 
         public static void Test()
         {
-            Run(new int[][] { new int[] {1} });
+            Run(new int[][] { new int[] {1,2,3},new int[] {10,20,30} });
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace algos
@@ -28,12 +29,18 @@ namespace algos
 
         private static void Dump2Array2(Array a)
         {
-            
+            Console.Write(string.Join(',', Enumerable.Cast<object>(a).ToArray())); 
         }
 
         private static void Dump2Jagged(Array a)
         {
-
+            var ja = a as object[][];
+            for (int i = 0; i < a.Length; i++)
+            {
+                var ji = a.GetValue(i) as Array;
+                Dump2Array2(ji);
+                Console.WriteLine();
+            }
         }
     }
 }
