@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using LINQPad;
+using algos.Graphs;
+
 
 namespace algos
 {
@@ -16,7 +17,8 @@ namespace algos
             //Console.WriteLine(Search.Search.BinarySearch(new int[] { 1, 2, 3, 4 }, 2));
             //Console.WriteLine(Search.Search.BinarySearch(new int[] { 1, 2, 3, 4 }, 4));
 
-            Aws.Zombie.Test();
+            //Aws.Zombie.Test();
+            GraphAlgo.Test();
         }
 
 
