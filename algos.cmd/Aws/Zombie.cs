@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using ConsoleDump;
 
-namespace algos.Aws
+namespace algos
 {
     /*
      Given a 2D grid, each cell is either a zombie 1 or a human 0. 

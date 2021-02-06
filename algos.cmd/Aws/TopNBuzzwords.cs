@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace algos.Aws
+namespace algos
 {
     //https://aonecode.com/amazon-online-assessment-top-n-buzzwords
 

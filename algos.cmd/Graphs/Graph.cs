@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace algos.Graphs
+namespace algos
 {
     public class Graph
     {
