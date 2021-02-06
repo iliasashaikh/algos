@@ -17,10 +17,15 @@ namespace algos
             //Console.WriteLine(Search.Search.BinarySearch(new int[] { 1, 2, 3, 4 }, 2));
             //Console.WriteLine(Search.Search.BinarySearch(new int[] { 1, 2, 3, 4 }, 4));
 
+<<<<<<< HEAD
             //Zombie.Test();
             //Recursion.Reverse(new int[] {1,2,3});
             SumPairs.Run();
             Console.WriteLine($"Sum : {Recursion.Add(new int[] { 1, 2, 3 })}");
+=======
+            //Aws.Zombie.Test();
+            GraphAlgo.Test();
+>>>>>>> 9d0222dcd8b07d0f3be4cd7fc813d0bd401a6f45
         }
 
 

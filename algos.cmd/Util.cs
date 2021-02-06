@@ -14,7 +14,7 @@ namespace algos
             {
                 case Array a when a.GetValue(0) is Array:
                     Dump2Jagged(a);
-                    break;
+                    return;
                 case Array a when a.Rank == 1:
                     ConsoleDump.Extensions.DumpObject(a);
                     break;
@@ -24,9 +24,11 @@ namespace algos
                 case IEnumerable e:
                     ConsoleDump.Extensions.DumpObject(e);
                     break;
+                default:
+                    Console.WriteLine(o);
+                    break;
             }
 
-            Console.WriteLine(o);
         }
 
         private static void Dump2Array2(Array a)
@@ -34,22 +36,26 @@ namespace algos
             throw new NotImplementedException();
         }
 
-        private static void Dump2Array(Array a)
+        private static void Dump2Array(Array a, string prefix="")
         {
-            Console.Write($" [{string.Join(',', Enumerable.Cast<object>(a).ToArray())}]"); 
+            Console.Write($"{prefix}[{string.Join(',', Enumerable.Cast<object>(a).ToArray())}]"); 
         }
 
         private static void Dump2Jagged(Array a)
         {
             var ja = a as object[][];
-            Console.WriteLine("[");
+            Console.Write("[");
             for (int i = 0; i < a.Length; i++)
             {
                 var ji = a.GetValue(i) as Array;
-                Dump2Array(ji);
+                if (i==0)
+                    Dump2Array(ji);
+                else 
+                    Dump2Array(ji, " ");
+                if (i==a.Length-1) 
+                    Console.Write("]");
                 Console.WriteLine();
             }
-            Console.Write("]");
         }
     }
 }
