@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using algos.Graphs;
 
 
 namespace algos
@@ -19,8 +18,10 @@ namespace algos
 
             //Zombie.Test();
             //Recursion.Reverse(new int[] {1,2,3});
-            SumPairs.Run();
-            Console.WriteLine($"Sum : {Recursion.Add(new int[] { 1, 2, 3 })}");
+            //SumPairs.Run();
+            //MoveZeros.Run();
+            LongestSubstring.Run();
+            //Console.WriteLine($"Sum : {Recursion.Add(new int[] { 1, 2, 3 })}");
         }
 
 
