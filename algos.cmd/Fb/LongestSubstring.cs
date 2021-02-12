@@ -38,9 +38,15 @@ namespace algos
     {
         public static void Run()
         {
-            Console.WriteLine(Bruteforce("abcabcbb"));
-            Console.WriteLine(Bruteforce("bbbbb"));
-            Console.WriteLine(Bruteforce("pwwkew"));
+            //Console.WriteLine(Bruteforce("abcabcbb"));
+            //Console.WriteLine(Bruteforce("bbbbb"));
+            //Console.WriteLine(Bruteforce("pwwkew"));
+
+            Console.WriteLine(SlidingWindow("abcabcbb"));
+            Console.WriteLine(SlidingWindow("abcbabcbb"));
+            Console.WriteLine(SlidingWindow("bbbbb"));
+            Console.WriteLine(SlidingWindow("pwwkew"));
+
         }
 
         static int Bruteforce(string s)
@@ -65,6 +71,35 @@ namespace algos
             }
             Console.WriteLine($"{s}:{longestSubstring}");
             return longestSubstring.Length;
+        }
+
+        static int SlidingWindow(string s)
+        {
+
+            if (s == null || s?.Length == 0)
+                return 0;
+
+            int maxLength = 0;
+            var (left, right) = (0,0);
+            HashSet<char> substringChars = new HashSet<char>();
+            while (right < s.Length)
+            {
+                if (substringChars.Contains(s[right]))
+                {
+                    substringChars.Remove(s[left]);
+                    left++;
+                }
+                else
+                {
+                    substringChars.Add(s[right]);
+                    maxLength = Math.Max(maxLength, right - left + 1);
+                    right++;
+                }
+
+            }
+
+            return maxLength;
+
         }
     }
 }
