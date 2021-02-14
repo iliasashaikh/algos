@@ -20,8 +20,9 @@ namespace algos
             //Recursion.Reverse(new int[] {1,2,3});
             //SumPairs.Run();
             //MoveZeros.Run();
-            LongestSubstring.Run();
             //Console.WriteLine($"Sum : {Recursion.Add(new int[] { 1, 2, 3 })}");
+            //LongestSubstring.Run();
+            MininumWindowSubstring.Run();
         }
 
 
