@@ -1,31 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NUnit.Framework;
+using NUnitLite;
+using System;
+using System.Reflection;
 
-
-namespace algos
+public class Runner
 {
-    class Program
+    public static int Main(string[] args)
     {
-
-
-        static void Main(string[] args)
-        {
-            //Console.WriteLine(Search.Search.BinarySearch(new int[] { 1, 2, 3, 4 }, 10));
-            //Console.WriteLine(Search.Search.BinarySearch(new int[] { 1, 2, 3, 4 }, 0));
-            //Console.WriteLine(Search.Search.BinarySearch(new int[] { 1, 2, 3, 4 }, 1));
-            //Console.WriteLine(Search.Search.BinarySearch(new int[] { 1, 2, 3, 4 }, 2));
-            //Console.WriteLine(Search.Search.BinarySearch(new int[] { 1, 2, 3, 4 }, 4));
-
-            //Zombie.Test();
-            //Recursion.Reverse(new int[] {1,2,3});
-            //SumPairs.Run();
-            //MoveZeros.Run();
-            LongestSubstring.Run();
-            //Console.WriteLine($"Sum : {Recursion.Add(new int[] { 1, 2, 3 })}");
-        }
-
-
+        return new AutoRun(Assembly.GetCallingAssembly()).Execute(new String[] { "--labels=All" });
     }
 
-
+    
+    
 }
