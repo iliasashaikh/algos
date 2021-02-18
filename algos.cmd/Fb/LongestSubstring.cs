@@ -38,10 +38,6 @@ namespace algos
     {
         public static void Run()
         {
-            //Console.WriteLine(Bruteforce("abcabcbb"));
-            //Console.WriteLine(Bruteforce("bbbbb"));
-            //Console.WriteLine(Bruteforce("pwwkew"));
-
             Console.WriteLine(SlidingWindow("abcabcbb"));
             Console.WriteLine(SlidingWindow("abcbabcbb"));
             Console.WriteLine(SlidingWindow("bbbbb"));
