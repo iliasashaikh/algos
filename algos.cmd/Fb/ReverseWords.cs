@@ -13,7 +13,7 @@ namespace algos.Fb
         {
 
             // reverse the entire message if theres any space
-            if ( (message?.Any() ?? false) && !message.Contains(' '))
+            if ( (message?.Any() ?? false) && message.Contains(' '))
             {
                 Reverse(message, 0, message.Length - 1);
 
