@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using NUnit.Framework;
 
 namespace algos
 {
@@ -34,9 +35,10 @@ namespace algos
         output = 4
         There's one valid pair 1+5, and three different valid pairs 3+3 (the 3rd and 4th elements, 3rd and 5th elements, and 4th and 5th elements).
      */
-    public static class SumPairs
+    [TestFixture]
+    public class SumPairs
     {
-        private static int numberOfWaysBruteForce(int[] arr, int k)
+        private int numberOfWaysBruteForce(int[] arr, int k)
         {
             int count = 0;
             var occurances = new Dictionary<int, int>();
@@ -46,11 +48,11 @@ namespace algos
                     if (arr[i] + arr[j] == k && i != j)
                         count++;
                 }
-            
-            return count/2;
+
+            return count / 2;
         }
 
-        private static int numberOfWays(int[] arr, int k)
+        private int numberOfWays(int[] arr, int k)
         {
             int count = 0;
             var occurances = new Dictionary<int, int>();
@@ -75,11 +77,11 @@ namespace algos
         }
 
 
-        public static void Run()
+        public void Run()
         {
             var r = numberOfWaysBruteForce(new int[] { 1, 5, 3, 3, 3 }, 6);
             Console.WriteLine(r);
-            
+
             r = numberOfWays(new int[] { 1, 5, 3, 3, 3 }, 6);
             Console.WriteLine(r);
         }
