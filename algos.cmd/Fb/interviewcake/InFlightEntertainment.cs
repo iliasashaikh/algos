@@ -27,10 +27,13 @@ namespace algos.Fb
             HashSet<int> movieTimes = new HashSet<int>();
             for (int i = 0; i < movieLengths.Length; i++)
             {
+                var currentMovieLength = movieLengths[i];
+                var remainingLength = flightLength - currentMovieLength;
+                if (movieTimes.Contains(remainingLength))
+                    return true;
 
+                movieTimes.Add(currentMovieLength);
             }
-
-
             return false;
         }
         // Tests
