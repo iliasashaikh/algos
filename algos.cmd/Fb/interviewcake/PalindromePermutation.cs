@@ -15,6 +15,7 @@ Examples:
 If you had this thought, read the question again carefully. We're asking if any permutation of the string is a palindrome. Spend some extra time ensuring you fully understand the question before starting. Jumping in with a flawed understanding of the problem doesn't look good in an interview.
 
 */
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace algos.Fb
@@ -26,8 +27,17 @@ namespace algos.Fb
         {
             // Check if any permutation of the input is a palindrome
 
+            HashSet<char> unpairedCharacters = new HashSet<char>();
+            foreach (var c in theString)
+            {
+                if (unpairedCharacters.Contains(c))
+                    unpairedCharacters.Remove(c);
+                else
+                    unpairedCharacters.Add(c);
+            }
 
-            return false;
+
+            return unpairedCharacters.Count <= 1;
         }
 
         // Tests

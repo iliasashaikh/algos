@@ -8,7 +8,7 @@ public class Runner
     public static int Main(string[] args)
     {
         return new AutoRun(Assembly.GetCallingAssembly())
-                .Execute(new String[] { "--prefilter=algos.Fb.InFlightEntertainment" });
+                .Execute(new String[] { "--prefilter=algos.Fb.PalindromePermutation" });
         // return new AutoRun(Assembly.GetCallingAssembly()).Execute(new String[] { "--labels=All" });
         // return new AutoRun(Assembly.GetCallingAssembly()).Execute(null);
     }
