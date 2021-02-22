@@ -23,6 +23,7 @@ No "shorting"—you need to buy before you can sell. Also, you can't buy and sel
 */
 
 using System;
+using static System.Math;
 using NUnit.Framework;
 
 namespace algos.Fb
@@ -30,18 +31,49 @@ namespace algos.Fb
     [TestFixture]
     public class AppleStocks
     {
+        public int GetMaxProfitBruteForce(int[] stockPrices)
+        {
+            int maxProfit = int.MinValue;
+            for (int i = 0; i < stockPrices.Length - 1; i++)
+                for (int j = i; j < stockPrices.Length; j++)
+                {
+                    var buyAt = stockPrices[i];
+                    var sellAt = stockPrices[j];
+
+                    var profit = sellAt - buyAt;
+                    maxProfit = Math.Max(maxProfit, profit);
+                }
+
+            return maxProfit;
+        }
+
         public int GetMaxProfit(int[] stockPrices)
         {
-            // Calculate the max profit
+            if (stockPrices == null || stockPrices.Length <= 1)
+                throw new ArgumentException();
 
+            int minPrice = stockPrices[0];
+            int maxProfit = int.MinValue;
 
-            return 0;
+            for (int i = 1; i < stockPrices.Length; i++)
+            {
+                var profit = stockPrices[i] - minPrice;
+                maxProfit = Max(profit, maxProfit);
+
+                minPrice = Min(minPrice, stockPrices[i]);
+            }
+
+            return maxProfit;
         }
+
+
+
         // Tests
 
         [Test]
         public void PriceGoesUpThenDownTest()
         {
+            // var actual = GetMaxProfitBruteForce(new int[] { 1, 5, 3, 2 });
             var actual = GetMaxProfit(new int[] { 1, 5, 3, 2 });
             var expected = 4;
             Assert.AreEqual(expected, actual);
@@ -50,6 +82,7 @@ namespace algos.Fb
         [Test]
         public void PriceGoesDownThenUpTest()
         {
+            // var actual = GetMaxProfitBruteForce(new int[] { 7, 2, 8, 9 });
             var actual = GetMaxProfit(new int[] { 7, 2, 8, 9 });
             var expected = 7;
             Assert.AreEqual(expected, actual);
@@ -58,6 +91,7 @@ namespace algos.Fb
         [Test]
         public void BigIncreaseThenSmallIncreaseTest()
         {
+            // var actual = GetMaxProfitBruteForce(new int[] { 2, 10, 1, 4 });
             var actual = GetMaxProfit(new int[] { 2, 10, 1, 4 });
             var expected = 8;
             Assert.AreEqual(expected, actual);
@@ -66,6 +100,7 @@ namespace algos.Fb
         [Test]
         public void PriceGoesUpAllDayTest()
         {
+            // var actual = GetMaxProfitBruteForce(new int[] { 1, 6, 7, 9 });
             var actual = GetMaxProfit(new int[] { 1, 6, 7, 9 });
             var expected = 8;
             Assert.AreEqual(expected, actual);
@@ -74,6 +109,7 @@ namespace algos.Fb
         [Test]
         public void PriceGoesDownAllDayTest()
         {
+            // var actual = GetMaxProfitBruteForce(new int[] { 9, 7, 4, 1 });
             var actual = GetMaxProfit(new int[] { 9, 7, 4, 1 });
             var expected = -2;
             Assert.AreEqual(expected, actual);
@@ -82,6 +118,7 @@ namespace algos.Fb
         [Test]
         public void PriceStaysTheSameAllDayTest()
         {
+            // var actual = GetMaxProfitBruteForce(new int[] { 1, 1, 1, 1 });
             var actual = GetMaxProfit(new int[] { 1, 1, 1, 1 });
             var expected = 0;
             Assert.AreEqual(expected, actual);
