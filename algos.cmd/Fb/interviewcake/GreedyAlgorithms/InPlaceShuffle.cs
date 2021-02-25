@@ -26,8 +26,11 @@ namespace algos.Fb
         public static void Shuffle(int[] array)
         {
             // Shuffle the input in place
-
-
+            for (int i = 0; i < array.Length; i++)
+            {
+                var newIndex = GetRandom(i, array.Length - 1);
+                (array[i], array[newIndex]) = (array[newIndex], array[i]);
+            }
         }
 
         [Test]

@@ -27,10 +27,34 @@ namespace algos.Fb
     {
         public int[] GetProductsOfAllIntsExceptAtIndex(int[] intArray)
         {
-            // Make an array with the products
 
+            if (intArray == null || intArray.Length <= 1)
+                throw new ArgumentException();
 
-            return new int[intArray.Length];
+            void Dump(int[] a) => Console.WriteLine($"[{string.Join(",", a)}]");
+            // make 2 arrays, left & right 
+            int[] left = new int[intArray.Length];
+            int[] right = new int[intArray.Length];
+
+            Array.Fill<int>(left, 1);
+            Array.Fill<int>(right, 1);
+            Dump(intArray);
+
+            for (int i = 1, j = intArray.Length - 2; i < intArray.Length; i++, j--)
+            {
+                left[i] = left[i - 1] * intArray[i - 1];
+                right[j] = right[j + 1] * intArray[j + 1];
+                Dump(left);
+                Dump(right);
+            }
+
+            var r = new int[intArray.Length];
+            for (int i = 0; i < r.Length; i++)
+            {
+                r[i] = left[i] * right[i];
+            }
+
+            return r;
         }
 
         // Tests
