@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using NUnit.Framework;
 
 namespace algos.Fb
@@ -14,6 +16,29 @@ namespace algos.Fb
         public Node(int value)
         {
             this.Value = value;
+        }
+
+        public override string ToString()
+        {
+            var q = new Queue<Node>();
+            var l = new List<Node>();
+            q.Enqueue(this);
+            while (q.TryPeek(out _))
+            {
+                var n = q.Dequeue();
+                l.Add(n);
+                if (n != null)
+                {
+                    if (n.Left != null || n.Right != null)
+                    {
+                        q.Enqueue(n.Left);
+                        q.Enqueue(n.Right);
+                    }
+                }
+            }
+
+            var s = string.Join(",", l.Select(n => n?.Value.ToString() ?? "null").ToArray());
+            return s;
         }
     }
 
@@ -41,7 +66,7 @@ namespace algos.Fb
                 
                 if (n.Left != null)
                     q.Enqueue(n.Left);
-                
+
                 if (n.Right != null)
                     q.Enqueue(n.Right);
             }
@@ -66,6 +91,24 @@ namespace algos.Fb
             var actual = Bfs(root);
             Assert.AreEqual(expected,actual);
         }
+
+        [Test]
+        public void Traverse_Bfs_nullNode()
+        {
+            var expected = new int[]{1,2,0,4};
+            var root = new Node(1);
+            
+            var a = root.Left = new Node(2);
+           
+            var c = a.Left = new Node(4);
+
+            var actual = Bfs(root);
+
+            Console.WriteLine(root);
+
+            Assert.AreEqual(expected,actual);
+        }
+
 
         public int[] Dfs_Inorder(Node root)
         {
