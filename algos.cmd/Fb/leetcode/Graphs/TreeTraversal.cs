@@ -43,7 +43,38 @@ namespace algos.Fb
 
         public static Node FromString(string treeString)
         {
-            
+            var q = new Queue<Node>();
+            var treeStringArray = treeString.Split(',');
+            var treeArray = treeStringArray.Select(s => int.TryParse(s, out var v) ? (int?)v : null).ToArray();
+
+            var root = new Node(treeArray[0].Value);
+            int nextLeft = 1;
+            int nextRight = 2;
+
+            var nextRoot = root;
+            q.Enqueue(nextRoot);
+            while (q.TryPeek(out _))
+            {
+                nextRoot = q.Dequeue();
+
+                if (nextLeft < treeArray.Length)
+                {
+                    var l = new Node(treeArray[nextLeft].Value);
+                    nextLeft += 2;
+                    nextRoot.Left = l;
+                    q.Enqueue(root.Left);
+                }
+
+                if (nextRight < treeArray.Length)
+                {
+                    var r = new Node(treeArray[nextRight].Value);
+                    nextRight += 2;
+                    nextRoot.Right = r;
+                    q.Enqueue(r);
+                }
+            }
+
+            return root;
         }
 
         // public static Node FromString(string treeString)
@@ -90,13 +121,13 @@ namespace algos.Fb
         //             var r = treeArray[pRight] == null? null: new Node( treeArray[pRight].Value);
         //             p.Right = r;
         //         }
-                
+
         //         pLeft += 2;
         //         pRight += 2;
 
         //         if (pLeft > treeArray.Length)
         //             break;
-                
+
         //         p = nextParentIsLeft?p.Left:p.Right;
         //         nextParentIsLeft = !nextParentIsLeft;
         //     }
@@ -139,9 +170,8 @@ namespace algos.Fb
         [Test]
         public void TreeFromString()
         {
-            var s = "1,2,3,4,null,5";
+            var s = "1,2,3,4,5";
             var r = Node.FromString(s);
-
         }
 
         [Test]

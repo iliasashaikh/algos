@@ -18,7 +18,7 @@ namespace algos.Fb
             }
             public int Value { get; set; }
             public Node Left { get; set; }
-            public Node Right { get; set; }
+            public Node Right { get; set; } 
 
             public Node AddLeft(int leftValue) => Left = new Node(leftValue);
             public Node AddRight(int rightValue) => Right = new Node(rightValue);
