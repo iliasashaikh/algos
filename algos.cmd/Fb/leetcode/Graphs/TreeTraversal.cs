@@ -62,7 +62,7 @@ namespace algos.Fb
                     var l = treeArray[nextLeft] == null? null: new Node(treeArray[nextLeft].Value);
                     nextLeft += 2;
                     nextRoot.Left = l;
-                    q.Enqueue(root.Left);
+                    q.Enqueue(l);
                 }
 
                 if (nextRight < treeArray.Length)
