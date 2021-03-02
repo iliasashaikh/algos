@@ -9,6 +9,7 @@ public class Runner
     {
         return new AutoRun(Assembly.GetCallingAssembly())
                 .Execute(new String[] { "--prefilter=algos.Fb.PhoneLetterCombinations" });
+
         // return new AutoRun(Assembly.GetCallingAssembly()).Execute(new String[] { "--labels=All" });
         // return new AutoRun(Assembly.GetCallingAssembly()).Execute(null);
     }
