@@ -11,74 +11,90 @@ namespace algos.Fb
         public int Search(int[] nums, int target)
         {
 
-            int lo, hi = 0;
-            int md = -1;
-            if (target == nums[0])
-                return 0;
+            if (nums.Length <= 0)
+                return -1;
+
+            int lo = 0;
+            int hi = nums.Length - 1;
 
             var rotationPoint = GetRotationPoint(nums);
-            Console.WriteLine($"rotationPoint={rotationPoint}");
-
-            if (target > nums[0])
-            {
-                lo = 0;
-                hi = rotationPoint;
-            }
+            
+            if (target >= nums[0])
+                hi = rotationPoint - 1;
             else
-            {
                 lo = rotationPoint;
-                hi = nums.Length - 1;
-            }
 
 
-            while (lo < hi)
+            while(lo <= hi)
             {
-                md = (lo + hi) / 2;
+                var mid = lo + (hi - lo) / 2;
+                if (nums[mid] == target)
+                    return mid;
 
-                if (target == nums[md])
-                    return md;
-
-                if (target > nums[md])
+                if (target >= nums[mid])
                 {
-                    lo = md;
+                    lo = mid + 1;
                 }
                 else
-                    hi = md;
-
+                    hi = mid - 1;
             }
 
             return -1;
+
+            Console.WriteLine($"rotationPoint={rotationPoint}");
+
+            
         }
 
         int GetRotationPoint(int[] nums)
         {
             var lo = 0;
-            var hi = nums.Length -1 ;
-            var mid = 0;
+            var hi = nums.Length - 1;
 
-            while (lo < hi)
+            
+            while(lo<=hi)
             {
-                mid = (lo + hi) / 2;
+                var mid = lo + (hi - lo) / 2;
 
-                if (nums[mid] > nums[0])
+                var midValue = nums[mid];
+                if(midValue>=nums[0])
+                {
                     lo = mid;
+                }
                 else
+                {
                     hi = mid;
+                }
 
                 if (lo + 1 == hi)
-                    return hi;
+                    break;
 
             }
+            return hi;
 
-            return 0;
 
         }
 
         [Test]
         public void Test()
         {
-            var r = Search(new int[] { 4, 5, 6, 7, 0, 1, 2 }, 3);
+            var r = Search(new int[] { 4, 5, 6, 7, 0, 1, 2 }, 2);
+            Assert.AreEqual(6, r);
+
+            r = Search(new int[] {}, 4);
             Assert.AreEqual(-1, r);
+
+            r = Search(new int[] { 4, 5, 6, 7, 0, 1, 2 }, 4);
+            Assert.AreEqual(0, r);
+
+            r = Search(new int[] { 4, 5, 6, 7, 0, 1, 2 }, 0);
+            Assert.AreEqual(4, r);
+
+            r = Search(new int[] { 4, 5, 6, 7, 0, 1, 2 }, 5);
+            Assert.AreEqual(1, r);
+
+            r = Search(new int[] { 0, 1, 2, 3, 4, 5, 6, 7 }, 5);
+            Assert.AreEqual(5, r);
         }
     }
 }
