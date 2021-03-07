@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace algos.Fb
+namespace algos.Fb.Search
 {
     [TestFixture]
     public class SearchRotated

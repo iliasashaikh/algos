@@ -8,6 +8,6 @@ public class Runner
     public static int Main(string[] args)
     {
         return new AutoRun(Assembly.GetCallingAssembly())
-                .Execute(new String[] { "--prefilter=algos.Fb.SearchRotatedPramp" });
+                .Execute(new String[] { "--prefilter=algos.Fb.Search.FirstAndLastPosition" });
     }
 }
