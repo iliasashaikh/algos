@@ -23,10 +23,10 @@ namespace algos.Fb
     public class LargestInTreeRow
     {
         List<int> levels = new List<int>();
-        public int[] FindRecursive(Node root)
+        public int[] FindRecursive(TreeNode root)
         {
 
-            void Find(Node n, int level)
+            void Find(TreeNode n, int level)
             {
                 if (n == null)
                     return;
@@ -49,7 +49,7 @@ namespace algos.Fb
         [Test]
         public void Test()
         {
-            var n = Node.FromString("1,2,3,4,5,null,6");
+            var n = TreeNode.FromString("1,2,3,4,5,null,6");
             var r = FindRecursive(n);
             Assert.AreEqual(r, new int[] {1,3,6});
         }
