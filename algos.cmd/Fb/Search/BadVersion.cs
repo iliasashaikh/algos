@@ -25,6 +25,7 @@
 
     Constraints:
 
+
     1 <= bad <= n <= 231 - 1 
  */
 

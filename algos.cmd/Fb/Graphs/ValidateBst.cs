@@ -15,55 +15,92 @@ Both the left and right subtrees must also be binary search trees.
 https://leetcode.com/explore/interview/card/facebook/52/trees-and-graphs/266/
 */
 
-public class ValidateBst
+using NUnit.Framework;
+using static System.Math;
+
+namespace algos.Fb
 {
-    public class TreeNode
+    [TestFixture]
+    public class ValidateBst
     {
-        public int val;
-        public TreeNode left;
-        public TreeNode right;
-        public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+        
+        //public class TreeNode
+        //{
+        //    public int val;
+        //    public TreeNode left;
+        //    public TreeNode right;
+        //    public TreeNode(int val = 0, TreeNode left = null, TreeNode right = null)
+        //    {
+        //        this.val = val;
+        //        this.left = left;
+        //        this.right = right;
+        //    }
+        //}
+
+        public bool IsValidBST(TreeNode root)
         {
-            this.val = val;
-            this.left = left;
-            this.right = right;
+            // traverse the tree 'Pre order'
+            // node must be greater than previous node
+
+            if (root == null)
+                return false;
+
+            if (root.left == null && root.right == null)
+                return true;
+
+
+            long previous = long.MinValue;
+            bool isBst = true;
+            void WalkTree(TreeNode n)
+            {
+                if (n == null)
+                    return;
+
+                WalkTree(n.left);
+
+                if (n.val <= previous)
+                    isBst = false;
+
+                previous = n.val;
+
+                WalkTree(n.right);
+
+            }
+
+            WalkTree(root);
+            return isBst;
+
         }
-    }
 
-    public bool IsValidBST(TreeNode root)
-    {
-        // traverse the tree 'In order'
-        // node must be greater than previous node
+        //                        
+        //          8   
+        //      2       9
+        //  1       3  7
+        //          
 
-        if (root == null)
-            return false;
-
-        if (root.left == null && root.right == null)
-            return true;
-
-
-        long previous = long.MinValue;
-        bool isBst = true;
-        void WalkTree(TreeNode n)
+        // 8
+        public bool IsValidBST_R(TreeNode root)
         {
-            if (n == null)
-                return;
+            
+            bool R(TreeNode node, long lower, long higher)
+            {
+                var v = node.Value;
 
-            WalkTree(n.left);
+                if (v >= higher || v <= lower)
+                    return false;
 
-            if (n.val <= previous)
-                isBst = false;
+                return R(node.right, node.val, higher) && R(node.left, lower, node.Value);
+            }
 
-            previous = n.val;
-
-            WalkTree(n.right);
-
+            return R(root, long.MinValue, long.MaxValue);
         }
 
-        WalkTree(root);
-        return isBst;
+        [Test]
+        public void Test()
+        {
+            var t = TreeNode.FromString(@"5,4,6,null,null,3,7");
+            IsValidBST_R(t);
+        }
 
     }
-
-
 }

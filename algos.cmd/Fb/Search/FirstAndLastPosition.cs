@@ -81,7 +81,7 @@ namespace algos.Fb.Search
         private int FindHigh(int[] nums, int target)
         {
             //[0,1,2,3,4,5]
-            //[5,7,7,8,8,10], target = 8
+            //[5,7,7,8,8,10], target = 8 
             // l = 0, h = 5, m = 2 : 7
             // l = 3, h = 5, m = 4 : 8 
             // l = 5, h = 5, m = 5 : 8
