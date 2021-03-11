@@ -9,7 +9,7 @@ namespace algos.Fb
     [TestFixture]
     public class TreeTraversal
     {
-        public int[] Bfs(Node root)
+        public int[] Bfs(TreeNode root)
         {
             /*  
                           1
@@ -20,7 +20,7 @@ namespace algos.Fb
             */
 
             List<int> treeArray = new List<int>();
-            Queue<Node> q = new Queue<Node>();
+            Queue<TreeNode> q = new Queue<TreeNode>();
             q.Enqueue(root);
 
             while (q.TryPeek(out var _))
@@ -40,24 +40,24 @@ namespace algos.Fb
         [Test]
         public void TreeFromString()
         {
-            var r = Node.FromString("1,2,3,4,5");
-            var r2 = Node.FromString("1,2,3,null,4,5");
+            var r = TreeNode.FromString("1,2,3,4,5");
+            var r2 = TreeNode.FromString("1,2,3,null,4,5");
         }
 
         [Test]
         public void Traverse_Bfs()
         {
             var expected = new int[] { 1, 2, 3, 4, 5, 6, 7 };
-            var root = new Node(1);
+            var root = new TreeNode(1);
 
-            var a = root.Left = new Node(2);
-            var b = root.Right = new Node(3);
+            var a = root.Left = new TreeNode(2);
+            var b = root.Right = new TreeNode(3);
 
-            var c = a.Left = new Node(4);
-            var d = a.Right = new Node(5);
+            var c = a.Left = new TreeNode(4);
+            var d = a.Right = new TreeNode(5);
 
-            var e = b.Left = new Node(6);
-            var f = b.Right = new Node(7);
+            var e = b.Left = new TreeNode(6);
+            var f = b.Right = new TreeNode(7);
 
             var actual = Bfs(root);
             Assert.AreEqual(expected, actual);
@@ -67,11 +67,11 @@ namespace algos.Fb
         public void Traverse_Bfs_nullNode()
         {
             var expected = new int[] { 1, 2, 0, 4 };
-            var root = new Node(1);
+            var root = new TreeNode(1);
 
-            var a = root.Left = new Node(2);
+            var a = root.Left = new TreeNode(2);
 
-            var c = a.Left = new Node(4);
+            var c = a.Left = new TreeNode(4);
 
             var actual = Bfs(root);
 
@@ -81,17 +81,17 @@ namespace algos.Fb
         }
 
 
-        public int[] Dfs_Inorder(Node root)
+        public int[] Dfs_Inorder(TreeNode root)
         {
             throw new NotImplementedException();
         }
 
-        public int[] Dfs_preorder(Node root)
+        public int[] Dfs_preorder(TreeNode root)
         {
             throw new NotImplementedException();
         }
 
-        public int[] Dfs_postorder(Node root)
+        public int[] Dfs_postorder(TreeNode root)
         {
             throw new NotImplementedException();
         }

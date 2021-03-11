@@ -6,11 +6,11 @@ namespace algos.Fb
     [TestFixture]
     public class FlattenBinaryTree
     {
-        public Node Flatten_UsingList(Node root)
+        public TreeNode Flatten_UsingList(TreeNode root)
         {
-            var inorderSequence = new List<Node>();
+            var inorderSequence = new List<TreeNode>();
 
-            void Do(Node n)
+            void Do(TreeNode n)
             {
                 if (n == null)
                     return;
@@ -32,7 +32,7 @@ namespace algos.Fb
             return root;
         }
 
-        public Node Flatten_Recursive(Node node)
+        public TreeNode Flatten_Recursive(TreeNode node)
         {
             if (node == null)
                 return null;
@@ -56,7 +56,7 @@ namespace algos.Fb
         [Test]
         public void TestFlatten_UsingList()
         {
-            var tree = Node.FromString("1,2,5,3,4,null,6");
+            var tree = TreeNode.FromString("1,2,5,3,4,null,6");
             var lk = Flatten_UsingList(tree);
             var expected = "1,null,2,null,3,null,4,null,5,null,6";
             Assert.AreEqual(expected, lk.ToString());
@@ -65,7 +65,7 @@ namespace algos.Fb
         [Test]
         public void TestFlatten_Recursive()
         {
-            var tree = Node.FromString("1,2,5,3,4,null,6");
+            var tree = TreeNode.FromString("1,2,5,3,4,null,6");
             var lk = Flatten_Recursive(tree);
             var expected = "1,null,2,null,3,null,4,null,5,null,6";
             Assert.AreEqual(expected, lk.ToString());

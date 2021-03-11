@@ -6,9 +6,9 @@ namespace algos.Fb
     [TestFixture]
     public class BinaryTreeRightSideView
     {
-        public IList<int> RightSideView(Node root) 
+        public IList<int> RightSideView(TreeNode root) 
         {
-            var q = new Queue<Node>();
+            var q = new Queue<TreeNode>();
             var rightSideNodes = new List<int>();
             q.Enqueue(root);
 
@@ -33,7 +33,7 @@ namespace algos.Fb
             var treeString = "1,2,3,null,4,5,6";
             var expected = new List<int>{3,6};
 
-            var actual = RightSideView(Node.FromString(treeString));
+            var actual = RightSideView(TreeNode.FromString(treeString));
 
             Assert.AreEqual(expected,actual);
         }
