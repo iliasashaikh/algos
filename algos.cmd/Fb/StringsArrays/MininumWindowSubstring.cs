@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using NUnit.Framework;
 
-namespace algos
+namespace algos.Fb.StringsArrays
 {
     /*
      *  Given two strings s and t, return the minimum window in s which will contain all the characters in t. I
@@ -31,10 +32,10 @@ namespace algos
         Follow up: Could you find an algorithm that runs in O(n) time? 
      * 
      */
-
-    public static class MininumWindowSubstring
+    [TestFixture]
+    public class MininumWindowSubstring
     {
-        public static string BruteForce(string s, string t)
+        public string BruteForce(string s, string t)
         {
             bool IsCover(string subString, string t)
             {
@@ -74,43 +75,74 @@ namespace algos
             
         }
 
-        public static string SlidingWindow()
+        public string SlidingWindow(string s, string t)
         {
+            // s=xaxbxx; t=ab; => axb
+            int left = 0;
+            int right = 0;
+            var s2 = s.AsSpan();
+            int minWindowLength = int.MaxValue;
+            string minWindow = "";
 
-            string ContainsFast(ref string a,ref  string b)
+            while (right < s2.Length)
             {
-                var dictA = new Dictionary<char, int>();
-                var dictB = new Dictionary<char, int>();
-                for (int i = 0; i < b.Length; i++)
-                
-                if (a.Length >= b.Length)
+                var window = s2[left..(right + 1)];
+                if (IsCover(window,t))
                 {
-                    foreach (var c in a)
-                    {
+                    var minWin = FindMinWindow(window, t);
+                    if (minWin.Length < minWindowLength)
+                        minWindow = minWin;
 
-                    }
+                    left = right + 1;
                 }
-                throw new NotImplementedException();
-
-
+                right++;
             }
 
-            var (s, t) = (0, 0);
-
-            throw new NotImplementedException();
-
+            return minWindow;
         }
 
-        public static void Run()
+        private string FindMinWindow(ReadOnlySpan<char> window, string t)
         {
-            BruteForce("A", "A");
-            BruteForce("ADOBECODEBANC", "ABC");
-            BruteForce("A", null);
-            BruteForce(null, null);
-            BruteForce(null, "A");
-            BruteForce("abc", "AB");
-            BruteForce("abc", "a");
-            BruteForce("a", "a");
+            int left = 0;
+            var origWindow = window;
+            while(left < window.Length)
+            {
+                window = window[(left)..];
+                if (!IsCover(window, t))
+                    return origWindow[(left-1)..].ToString();
+                left++;
+            }
+
+            return t;
+        }
+
+        private bool IsCover(ReadOnlySpan<char> window, string t)
+        {
+            var a = window.ToArray();
+            Array.Sort(a);
+            var windowSorted = new string(a);
+
+            var b = t.ToCharArray();
+            Array.Sort(b);
+            var targetSorted = new string(b);
+
+            return windowSorted.Contains(t);
+        }
+
+        [Test]
+        public void Test()
+        {
+            var r = SlidingWindow("ADOBECODEBANC", "ABC");
+            Assert.AreEqual("BANC", r);
+
+            //BruteForce("A", "A");
+            //BruteForce("ADOBECODEBANC", "ABC");
+            //BruteForce("A", null);
+            //BruteForce(null, null);
+            //BruteForce(null, "A");
+            //BruteForce("abc", "AB");
+            //BruteForce("abc", "a");
+            //BruteForce("a", "a");
         }
     }
 }
